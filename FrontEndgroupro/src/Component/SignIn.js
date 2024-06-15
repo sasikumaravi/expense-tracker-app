@@ -7,7 +7,6 @@ import { useAuth } from './Auth';
 export default function SignIn() {
     const [email, setEMail] = useState('')
     const [password, setPassword] = useState('')
-    const[message,setMessage]=useState('')
     const [errMsg, setErrMsg] = useState('')
     const navigate = useNavigate()
     const auth = useAuth()
@@ -18,17 +17,17 @@ export default function SignIn() {
                 console.log(res)
                 if (res.data[0]?.email) {
                     if (res.data[0]?.password === password) {
-                        setMessage('')
+                        setErrMsg('')
                         alert('Login successfull')
                         navigate('/Dashboard')
                         auth.login(res.data[0]?.username)
                     }
                     else {
-                        setMessage("Incorrect password")
+                        setErrMsg("Incorrect password")
                     }
                 }
                 else {
-                    setMessage('Email not found')
+                    setErrMsg('Email not found bro')
                 }
 
             })
